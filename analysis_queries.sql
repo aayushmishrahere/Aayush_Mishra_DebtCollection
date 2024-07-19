@@ -15,14 +15,13 @@ Where `Delayed Payment` = 'Yes'
 -- Calculating the outstanding amount by firstly adding the principal amount and the Simple Interest
 -- then Subtracting the multiplication of EMI and the number of times it has been payed 
 -- and also checking if the number of payments is zero then just subtracting the EMI
-Select `Name`, `Email Address`, `Geographical Location`,
-(`Loan Amount` + (`Loan Amount` * `Interest Rate`) - 
+Select `Name`, `Email Address`, `Geographical Location`, `Number of Payments`, `Loan Type`,
+ `Loan Amount`, `EMI`, `Loan Purpose`, (`Loan Amount` + (`Loan Amount` * `Interest Rate`) - 
 (Case When `Number of Payments` > 0 Then (`EMI` * `Number of Payments`) 
 Else `EMI` END)) As Outstanding_Balance
 From borrowers
 order by Outstanding_Balance Desc
 LIMIT 10;
-
 
 
 -- 3. LIST OF ALL THE BORROWERS WITH GOOD REPAYMENT HISTORY
